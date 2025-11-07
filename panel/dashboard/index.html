@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rux | Panel</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom font import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom glow effect on hover */
+        .setting-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+        }
+        .setting-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2), 0 0 10px rgba(59, 130, 246, 0.4);
+            border-color: rgb(59 130 246 / 0.5); /* Blue 500 with opacity */
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col items-center p-4 sm:p-8">
+
+    <!-- Header -->
+    <header class="w-full max-w-5xl text-center mb-12">
+        <h1 class="text-5xl font-extrabold text-blue-400 tracking-wider mb-2">RUX Panel</h1>
+        <p class="text-lg text-gray-400 font-light">Customize RuxOS to your liking.</p>
+        <hr class="mt-4 border-gray-800">
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-4xl">
+
+        <!-- ---------------------------------------------------- -->
+        <!-- VIEW 1: MAIN SETTINGS GRID -->
+        <!-- ---------------------------------------------------- -->
+        <div id="main-grid-view">
+            <h2 class="text-2xl font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">System Configuration</h2>
+            
+            <!-- Settings Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Primary Setting Cards (Note the data-category attribute for JS) -->
+                <!-- Card 1: Security -->
+                <a href="javascript:void(0)" data-category="security" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
+                    <i data-lucide="shield" class="w-10 h-10 text-emerald-400 mb-3 group-hover:text-emerald-300"></i>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Security & Privacy</h3>
+                    <p class="text-sm text-gray-400 mt-1">Manage encryption keys, authentication, and access controls.</p>
+                </a>
+
+                <!-- Card 2: Network -->
+                <a href="javascript:void(0)" data-category="network" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
+                    <i data-lucide="network" class="w-10 h-10 text-yellow-400 mb-3 group-hover:text-yellow-300"></i>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Network Protocols</h3>
+                    <p class="text-sm text-gray-400 mt-1">Configure ports, firewall exceptions, and proxy settings.</p>
+                </a>
+
+                <!-- Card 3: Appearance -->
+                <a href="javascript:void(0)" data-category="appearance" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
+                    <i data-lucide="paint-roller" class="w-10 h-10 text-purple-400 mb-3 group-hover:text-purple-300"></i>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Display & Theme</h3>
+                    <p class="text-sm text-gray-400 mt-1">Customize the user interface, font scaling, and color palettes.</p>
+                </a>
+
+                <!-- Card 4: User Accounts -->
+                <a href="javascript:void(0)" data-category="users" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
+                    <i data-lucide="users" class="w-10 h-10 text-cyan-400 mb-3 group-hover:text-cyan-300"></i>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">User Management</h3>
+                    <p class="text-sm text-gray-400 mt-1">Add, remove, and modify user roles and permissions.</p>
+                </a>
+
+                <!-- Card 5: Diagnostics & Logs -->
+                <a href="javascript:void(0)" data-category="logs" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
+                    <i data-lucide="bug" class="w-10 h-10 text-red-400 mb-3 group-hover:text-red-300"></i>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Logs & Reporting</h3>
+                    <p class="text-sm text-gray-400 mt-1">Review system diagnostics, error logs, and performance metrics.</p>
+                </a>
+
+                <!-- Card 6: Updates -->
+                <a href="javascript:void(0)" data-category="updates" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
+                    <i data-lucide="refresh-cw" class="w-10 h-10 text-blue-400 mb-3 group-hover:text-blue-300"></i>
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Software Update</h3>
+                    <p class="text-sm text-gray-400 mt-1">Check for new versions and manage automatic patch installation.</p>
+                </a>
+
+            </div>
+
+            <!-- Advanced Tools (Remaining as static links) -->
+            <h2 class="text-2xl font-semibold text-gray-300 mt-10 mb-6 border-b border-gray-800 pb-2">Advanced Tools</h2>
+            
+            <div class="space-y-4">
+                 <!-- Advanced Button 1 -->
+                <a href="#" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
+                    <i data-lucide="terminal" class="w-6 h-6 text-gray-500 group-hover:text-orange-400"></i>
+                    <div class="flex-grow">
+                        <p class="font-medium text-white group-hover:text-orange-300">Console Access</p>
+                        <p class="text-xs text-gray-500">Direct command-line interface access (Administrator required).</p>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 group-hover:text-orange-400 transition duration-150"></i>
+                </a>
+
+                <!-- Advanced Button 2 -->
+                <a href="#" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
+                    <i data-lucide="database" class="w-6 h-6 text-gray-500 group-hover:text-lime-400"></i>
+                    <div class="flex-grow">
+                        <p class="font-medium text-white group-hover:text-lime-300">Data Backup & Restore</p>
+                        <p class="text-xs text-gray-500">Configure automated backups and manage restoration points.</p>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 group-hover:text-lime-400 transition duration-150"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- ---------------------------------------------------- -->
+        <!-- VIEW 2: DETAIL SUB-SETTINGS PANEL (Initially Hidden) -->
+        <!-- ---------------------------------------------------- -->
+        <div id="detail-view" class="hidden">
+            <!-- Back Button -->
+            <button id="back-button" class="flex items-center space-x-2 text-blue-400 hover:text-blue-300 mb-6 transition duration-150">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                <span>Back to Main Panel</span>
+            </button>
+
+            <!-- Detail Header -->
+            <h2 id="detail-title" class="text-3xl font-bold text-white mb-6 border-b border-gray-800 pb-3"></h2>
+            
+            <!-- Dynamic Sub-Buttons Container -->
+            <div id="detail-buttons-container" class="space-y-4">
+                <!-- Sub-buttons will be injected here by JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 w-full max-w-4xl text-center text-xs text-gray-600 border-t border-gray-800 pt-6">
+        Rux Configuration Interface | Version 4.1.2 | <a href="#" class="text-blue-500 hover:underline">Help</a>
+    </footer>
+
+    <script type="text/javascript">
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // --- Configuration Data for Sub-Settings ---
+        const settingsData = {
+            'security': {
+                title: 'Security & Privacy Controls',
+                buttons: [
+                    { label: 'Manage Encryption Keys', link: '#keys', icon: 'key' },
+                    { label: 'Configure 2FA Settings', link: '#2fa', icon: 'fingerprint' },
+                    { label: 'Firewall Configuration', link: '#firewall', icon: 'shield-off' },
+                    { label: 'View Audit Logs', link: '#audit', icon: 'file-text' }
+                ]
+            },
+            'network': {
+                title: 'Network Protocol Setup',
+                buttons: [
+                    { label: 'Connection Status', link: '#status', icon: 'wifi' },
+                    { label: 'Proxy Configuration', link: '#proxy', icon: 'globe' },
+                    { label: 'Advanced Port Forwarding', link: '#ports', icon: 'plug-zap' },
+                    { label: 'DNS Settings', link: '#dns', icon: 'server' }
+                ]
+            },
+            'appearance': {
+                title: 'Display & Theme Customization',
+                buttons: [
+                    { label: 'Change Color Palette', link: '#colors', icon: 'brush' },
+                    { label: 'Interface Scaling', link: '#scale', icon: 'maximize' },
+                    { label: 'Notification Preferences', link: '#notifications', icon: 'bell' }
+                ]
+            },
+            'users': {
+                title: 'User Management',
+                buttons: [
+                    { label: 'Add/Remove Users', link: '#add-remove', icon: 'user-plus' },
+                    { label: 'Modify Permissions', link: '#permissions', icon: 'shield-check' },
+                    { label: 'Reset Passwords', link: '#reset-pass', icon: 'lock' }
+                ]
+            },
+            'logs': {
+                title: 'Diagnostics & Reporting',
+                buttons: [
+                    { label: 'View Real-time Logs', link: '#realtime', icon: 'activity' },
+                    { label: 'Generate Performance Report', link: '#report', icon: 'bar-chart' },
+                    { label: 'Clear System Cache', link: '#cache', icon: 'loader' }
+                ]
+            },
+            'updates': {
+                title: 'Software Update Management',
+                buttons: [
+                    { label: 'Check for Updates Now', link: '#check', icon: 'cloud-download' },
+                    { label: 'Automatic Update Schedule', link: '#schedule', icon: 'calendar-check' },
+                    { label: 'Rollback Version', link: '#rollback', icon: 'history' }
+                ]
+            }
+        };
+
+        // --- DOM Elements ---
+        const mainView = document.getElementById('main-grid-view');
+        const detailView = document.getElementById('detail-view');
+        const backButton = document.getElementById('back-button');
+        const detailTitle = document.getElementById('detail-title');
+        const detailButtonsContainer = document.getElementById('detail-buttons-container');
+        const settingLinks = document.querySelectorAll('.setting-link');
+
+        /**
+         * Switches the view to the main settings grid.
+         */
+        function showMainView() {
+            detailView.classList.add('hidden');
+            mainView.classList.remove('hidden');
+            detailButtonsContainer.innerHTML = ''; // Clear previous buttons
+        }
+
+        /**
+         * Switches the view to the detail panel and populates it with sub-buttons.
+         * @param {string} categoryKey - The key corresponding to the settingsData.
+         */
+        function showDetailView(categoryKey) {
+            const data = settingsData[categoryKey];
+            if (!data) return;
+
+            // Update header
+            detailTitle.textContent = data.title;
+            
+            // Generate buttons
+            const buttonsHtml = data.buttons.map(item => `
+                <a href="${item.link}" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
+                    <i data-lucide="${item.icon}" class="w-6 h-6 text-blue-400 group-hover:text-blue-300"></i>
+                    <div class="flex-grow">
+                        <p class="font-medium text-white group-hover:text-blue-300">${item.label}</p>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 group-hover:text-blue-400 transition duration-150"></i>
+                </a>
+            `).join('');
+
+            detailButtonsContainer.innerHTML = buttonsHtml;
+            lucide.createIcons(); // Re-initialize icons for new elements
+
+            // Switch views
+            mainView.classList.add('hidden');
+            detailView.classList.remove('hidden');
+        }
+
+        // --- Event Listeners ---
+        
+        // 1. Attach listener to all main setting cards
+        settingLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                const category = link.dataset.category;
+                showDetailView(category);
+                event.preventDefault(); // Stop hash navigation
+            });
+        });
+
+        // 2. Attach listener to the Back button
+        backButton.addEventListener('click', showMainView);
+
+    </script>
+</body>
+</html>
