@@ -1,21 +1,56 @@
-## DrevOS
-A modification for Windows that adds a lot of unique and useful tools, makes Windows look cleaner with custom themes and wallpapers, and also might slightly increase performance in-app and games.
+<p align="center"><a href="https://browser.rueben.xyz"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=52C2BE&center=true&vCenter=true&width=435&lines=RuebenDock" alt="RuebenDock" /></a>
+<h1 align="center">your browser in the cloud</h1>
 
-## [Current Latest Version: V1.4](https://github.com/DrevilYT/DrevOS/releases/tag/v1.4)
-## [DrevOS Installer: VP-2.0](https://drev.uk.to/drevos)
+<p align="center">Each session runs in its own secure Docker container, giving you a private, isolated browsing environment every time. All servers are hosted by myself.</p>
+<hr>
+<p align="center">Powered by Kasm Workspaces</p>
+<hr>
 
-## Includes
-- [CMDAdminScript](https://github.com/DrevilYT/CMDAdminScript)
-- [DrevNET](https://github.com/DrevilYT/DrevNET)
-- [SteamRescue](https://github.com/DrevilYT/SteamRescue)
-- [SteamGrave](https://github.com/DrevilYT/SteamGrave)
-- [Windows Activation Tool](https://github.com/massgravel/Microsoft-Activation-Scripts)
-- [Drev's Upgrade Script](https://github.com/DrevilYT/UpgradeScript) 
-- [Chris Titus Tech's Windows Utility](https://github.com/ChrisTitusTech/winutil)
-- [Custom Cursors For Windows](https://github.com/DrevilYT/Custom-Cursors-For-Windows)
-- [DrevOS Uninstaller](https://github.com/DrevilYT/DrevOS/tree/main/uninstall)
+## ⚙️ How to Set It Up Yourself?
 
-## Credits
-- [DrevilYT](https://github.com/drevilyt) - Making DrevOS and some of the tools.
-- [Chris Titus Tech](https://github.com/ChrisTitusTech) - Making the Chris Titus Tech's Windows Utility tool.
-- [Massgravel](https://github.com/massgravel) - Making the Windows Activation Tool.
+### Prerequisites
+
+-  A Debian based Linux server (Ubuntu or Debian) with Docker and Docker Compose installed
+-  4 GB RAM and 10 GB storage minimum
+-  A domain or subdomain (e.g. browser.rueben.xyz)
+-  Optional: Nginx, Caddy, or Cloudflare Tunnel for HTTPS and routing
+
+### Method 1 - Using Portainer/Dockedge (Recommended)
+
+-   Install Portainer.
+-   Open Portainer at https://your-ip:9443 and complete the setup wizard.
+-   Go to Containers → Add Container, and enter:
+    ```
+    Image: kasmweb/chrome or another browser image (e.g. browserless/chrome)
+    Ports: 3000 → 3000
+    Restart policy: Always
+    ```
+-   Deploy the container, then open http://your-server-ip:3000 in your browser.
+
+### Method 2 - Manual via Docker Compose
+-   Create a new folder and a file called docker-compose.yml:
+    ```
+    version: "3"
+    services:
+      chrome:
+        image: ksm-chrome:latest
+        restart: always
+        ports:
+          - "3000:3000"
+        shm_size: 2gb
+    ```
+- Start it:
+  ```
+  docker compose up -d
+  ```
+- Visit:
+  ```
+  http://your-server-ip:3000
+  ```
+
+</br>
+
+```
+Latest Version: 1.2-beta
+Release date: 21-Oct-2025
+```
