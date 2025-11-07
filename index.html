@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rux | by Rueben</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic components -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom font import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Keyframe for the dynamic border glow effect */
+        @keyframes border-flicker {
+            0% { border-color: rgba(59, 130, 246, 0.4); }
+            50% { border-color: rgba(59, 130, 246, 0.8); }
+            100% { border-color: rgba(59, 130, 246, 0.4); }
+        }
+
+        .dynamic-border {
+            animation: border-flicker 1.5s ease-in-out infinite;
+        }
+
+        /* Basic spinner animation */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Header / Nav -->
+    <header class="w-full max-w-5xl py-4 flex justify-between items-center mb-16">
+        <div class="text-3xl font-extrabold text-blue-400 tracking-widest">RUX</div>
+        <nav class="hidden sm:flex space-x-6 text-sm text-gray-400">
+            <a href="#" class="hover:text-blue-400 transition duration-150">Features</a>
+            <a href="#" class="hover:text-blue-400 transition duration-150">Docs</a>
+            <a href="#" class="hover:text-blue-400 transition duration-150">Support</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full max-w-3xl text-center mb-20">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 text-white">
+             Improve <span class="text-blue-400">Windows</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-10">
+            with RuxOS
+        </p>
+
+        <!-- Dynamic Install Button & CTA Box -->
+        <div class="bg-gray-800/50 p-6 sm:p-8 rounded-xl shadow-2xl border border-blue-600/30 dynamic-border mx-auto max-w-sm">
+            
+            <button id="install-button"
+                    class="w-full flex items-center justify-center space-x-2 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/50 focus:outline-none focus:ring-4 focus:ring-blue-500/70 active:scale-[0.98]">
+                <i data-lucide="download-cloud" class="w-6 h-6"></i>
+                <span>Rux Installer</span>
+            </button>
+
+            <!-- Status Message Area (Initially Hidden) -->
+            <div id="status-message" class="mt-4 hidden p-3 rounded-lg text-sm transition-opacity duration-500">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+            
+            <p class="text-xs text-gray-500 mt-4">
+                Available for Windows 10, and 11.
+            </p>
+        </div>
+
+        <!-- System Features Section (Mock Content) -->
+        <div class="grid md:grid-cols-3 gap-8 mt-20 text-left">
+            <div class="p-6 rounded-xl bg-gray-900 border border-gray-800/50">
+                <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Improved Visuals</h3>
+                <p class="text-gray-400 text-sm">through custom themes and wallpapers.</p>
+            </div>
+            <div class="p-6 rounded-xl bg-gray-900 border border-gray-800/50">
+                <i data-lucide="plug-zap" class="w-8 h-8 text-yellow-400 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Custom Panel</h3>
+                <p class="text-gray-400 text-sm">To customize your RuxOS experience.</p>
+            </div>
+            <div class="p-6 rounded-xl bg-gray-900 border border-gray-800/50">
+                <i data-lucide="layout-grid" class="w-8 h-8 text-purple-400 mb-3"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">Frequent Updates</h3>
+                <p class="text-gray-400 text-sm">Faster updates than Windows itself.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-5xl py-8 mt-auto border-t border-gray-800 text-center text-sm text-gray-600">
+        &copy; 2025 Rueben. Privacy Policy | Terms of Service
+    </footer>
+
+    <script type="text/javascript">
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        const installButton = document.getElementById('install-button');
+        const statusMessage = document.getElementById('status-message');
+
+        /**
+         * Clears status and resets the button.
+         */
+        function resetState() {
+            installButton.disabled = false;
+            installButton.innerHTML = '<i data-lucide="download-cloud" class="w-6 h-6"></i><span>Install Rux Client</span>';
+            installButton.classList.remove('bg-gray-500', 'hover:bg-gray-600');
+            installButton.classList.add('bg-blue-600', 'hover:bg-blue-700', 'shadow-blue-500/50');
+            statusMessage.classList.add('hidden', 'opacity-0');
+        }
+
+        /**
+         * Simulates the installation process.
+         */
+        installButton.addEventListener('click', () => {
+            // Disable button and change styling
+            installButton.disabled = true;
+            installButton.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'shadow-blue-500/50');
+            installButton.classList.add('bg-gray-500', 'hover:bg-gray-600');
+
+            // 1. Show processing status
+            statusMessage.classList.remove('hidden');
+            statusMessage.classList.add('bg-blue-900/40', 'border-blue-600', 'border', 'text-blue-300', 'opacity-100');
+            statusMessage.innerHTML = `
+                <div class="flex items-center space-x-2 justify-center">
+                    <div class="spinner border-t-white"></div>
+                    <p class="font-semibold">Preparing Download...</p>
+                </div>
+            `;
+            
+            // 2. Wait for 2 seconds (simulating package preparation)
+            setTimeout(() => {
+                // Change status to successful download prompt
+                statusMessage.classList.remove('bg-blue-900/40', 'border-blue-600', 'text-blue-300');
+                statusMessage.classList.add('bg-emerald-900/40', 'border-emerald-600', 'text-emerald-300');
+
+                statusMessage.innerHTML = `
+                    <div class="flex flex-col space-y-2 text-center">
+                        <p class="font-bold">Download Ready!</p>
+                        <p class="text-xs">
+                            If the download doesn't start automatically, 
+                            <a href="https://cdn.rueben.xyz/content/rux/RuxInstaller.exe" 
+                               class="text-yellow-400 underline hover:text-yellow-300" 
+                               target="_blank" rel="noopener noreferrer">click here for a direct link</a>.
+                        </p>
+                    </div>
+                `;
+
+                // Reset button text to be a simple call to action again
+                installButton.innerHTML = '<span>Installation Guide</span>';
+                installButton.classList.remove('bg-gray-500');
+                installButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                installButton.disabled = false; // Re-enable for guide link
+
+                // Optional: Attempt a simulated redirect to an installer file.
+                // Since we can't host a real file, this link is mock, but it shows the intent.
+                // window.location.href = 'https://mock-rux-cdn.com/rux-client-latest.exe'; 
+
+            }, 2000); // 2 second delay for processing simulation
+        });
+
+        // Ensure icons are created for the dynamic content on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
