@@ -1,4 +1,4 @@
-<p align="center"><a href="https://browser.rueben.xyz"><img src="https://readme-typing-svg.demolab.com?font=Momo+Signature&pause=1000&color=7A11F7&center=true&width=435&lines=Rux" alt="RuebenDock" /></a>
+<p align="center"><a href="https://browser.rueben.xyz"><img src="https://readme-typing-svg.demolab.com?font=Momo+Signature&duration=2000&pause=1000&color=7A11F7&center=true&width=435&lines=Rux" alt="RuebenDock" /></a>
 <h1 align="center">your browser in the cloud</h1>
 
 <p align="center">Each session runs in its own secure Docker container, giving you a private, isolated browsing environment every time. All servers are hosted by myself.</p>
