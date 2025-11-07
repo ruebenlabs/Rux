@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rux | Panel</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic components -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom font import (Inter is Tailwind default, but explicitly setting a sophisticated fallback) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Keyframe for the pulsing glow effect */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4); }
+        }
+
+        .pulsing-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Basic spinner animation */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            border-top-color: #3b82f6; /* Blue 500 */
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            animation: spin 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Container -->
+    <div class="w-full max-w-lg">
+        <header class="text-center mb-12">
+            <h1 class="text-6xl font-extrabold text-blue-400 tracking-wider mb-2">RUX</h1>
+            <p class="text-xl text-gray-400 font-light">Panel Log-In</p>
+        </header>
+
+        <!-- Access Card -->
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700/50">
+
+            <div class="text-center mb-6">
+                <p class="text-lg font-medium text-gray-300">Log-in using RuxKey (included with RuxOS)</p>
+            </div>
+
+            <!-- Interactive Computer Button -->
+            <button id="computer-button"
+                    class="mx-auto block p-6 rounded-2xl transition-all duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-blue-500/50 active:scale-[0.98] cursor-pointer bg-gray-700/50 border border-blue-600/50 pulsing-glow"
+                    title="Click to launch rux: protocol">
+                <i data-lucide="monitor-dot" class="w-24 h-24 text-blue-400"></i>
+            </button>
+
+            <p class="text-center mt-4 text-sm text-gray-400">Click the monitor to attempt sign-in.</p>
+
+            <!-- Message Area -->
+            <div class="mt-8">
+                <!-- Loading/Connecting State (Initially Hidden) -->
+                <div id="loading-spinner" class="hidden text-center p-4 bg-gray-700/30 rounded-lg border border-gray-600">
+                    <div class="flex items-center justify-center space-x-3">
+                        <div class="spinner border-4 border-gray-600 border-t-blue-500"></div>
+                        <p class="text-blue-400 font-semibold">Connecting to RUX Host...</p>
+                    </div>
+                </div>
+
+                <!-- Success Message (New - Initially Hidden) -->
+                <div id="success-message" class="hidden text-left p-6 rounded-lg bg-emerald-900/40 border border-emerald-600">
+                    <div class="flex items-start space-x-3">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-emerald-400 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-emerald-300 mb-1">Sign-In Success: Redirecting</p>
+                            <p class="text-sm text-emerald-200">
+                                Protocol handler confirmed. Launching RUX Panel now.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Message (Initially Hidden) -->
+                <div id="error-message" class="hidden text-left p-6 rounded-lg bg-red-900/40 border border-red-600">
+                    <div class="flex items-start space-x-3">
+                        <i data-lucide="alert-octagon" class="w-6 h-6 text-red-400 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-red-300 mb-1">Access Failed: RuxKey Not Found</p>
+                            <p class="text-sm text-red-200">
+                                The browser was unable to detect <code>RuxKey</code> on your computer.
+                                This typically means that RuxOS is not properly installed or configured on your operating system.
+                            </p>
+                            <p class="mt-2 text-xs text-red-300/80">
+                                Please ensure that RuxOS is installed and running, then try again.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Initial Message -->
+                <div id="initial-message" class="text-center p-4 bg-gray-700/30 rounded-lg border border-gray-600">
+                    <p class="text-gray-400 text-sm">Waiting for user interaction.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-8 text-center text-xs text-gray-600">
+            &copy; 2025 Rueben. All rights reserved.
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        const computerButton = document.getElementById('computer-button');
+        const initialMessage = document.getElementById('initial-message');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const successMessage = document.getElementById('success-message'); // New element
+        const errorMessage = document.getElementById('error-message');
+
+        /**
+         * Clears all status messages.
+         */
+        function clearStatus() {
+            initialMessage.classList.add('hidden');
+            loadingSpinner.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            computerButton.disabled = false; // Re-enable button
+            computerButton.classList.remove('cursor-not-allowed');
+        }
+
+        /**
+         * Attempts to launch the custom URI protocol after a 3-second visual success sequence.
+         */
+        computerButton.addEventListener('click', () => {
+            // Disable button during process
+            computerButton.disabled = true;
+            computerButton.classList.add('cursor-not-allowed');
+            clearStatus();
+
+            const totalDelayMs = 3000; // Total delay before attempted launch
+            const successDisplayStartMs = 1000; // Start showing success message after 1 second
+
+            // 1. Show connecting state immediately
+            loadingSpinner.classList.remove('hidden');
+
+            // 2. Show success message after 1 second
+            setTimeout(() => {
+                loadingSpinner.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            }, successDisplayStartMs);
+
+            // 3. Attempt launch after the full 3 seconds delay
+            setTimeout(() => {
+                // Attempt the custom protocol launch
+                window.location.href = 'rux:login';
+
+                // We need a short timeout *after* the launch attempt to check for failure.
+                // If the browser redirects, the page script stops. If it doesn't, we show an error.
+                const postLaunchFailureCheckMs = 1500;
+                
+                const failureTimeoutId = setTimeout(() => {
+                    // If this code runs, the user is still on the page, so we assume failure.
+                    // The document.hidden check is a safety measure, though less reliable for URIs.
+                    if (!document.hidden) {
+                        clearStatus();
+                        errorMessage.classList.remove('hidden');
+                    }
+                }, postLaunchFailureCheckMs);
+                
+                // If the page loses focus (meaning a new app likely launched), cancel the failure check.
+                window.addEventListener('blur', () => clearTimeout(failureTimeoutId), { once: true });
+
+            }, totalDelayMs);
+        });
+    </script>
+</body>
+</html>
