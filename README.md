@@ -1,9 +1,9 @@
-<p align="center"><a href="https://browser.rueben.xyz"><img src="https://readme-typing-svg.demolab.com?font=Momo+Signature&duration=2000&pause=1000&color=7A11F7&center=true&width=435&lines=Rux" alt="RuebenDock" /></a>
-<h1 align="center">your browser in the cloud</h1>
+<p align="center"><a href="https://rux.rueben.xyz"><img src="https://readme-typing-svg.demolab.com?font=Momo+Signature&duration=2000&pause=1000&color=7A11F7&center=true&width=435&lines=Rux" alt="Rux" /></a>
+<h1 align="center">RuxOS</h1>
 
-<p align="center">Each session runs in its own secure Docker container, giving you a private, isolated browsing environment every time. All servers are hosted by myself.</p>
+<p align="center">A Windows modification that enhances the system with unique and practical tools, introduces cleaner visuals through custom themes and wallpapers, and delivers slight performance improvements in apps and games.</p>
 <hr>
-<p align="center">Powered by Kasm Workspaces</p>
+<p align="center">A modern take on DrevOS</p>
 <hr>
 
 ## ⚙️ How to Set It Up Yourself?
