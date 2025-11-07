@@ -23,6 +23,6 @@
 </br>
 
 ```
-Latest Version: 1.2-beta
-Release date: 21-Oct-2025
+Latest Version: dev
+Release date: tbd
 ```
