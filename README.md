@@ -12,7 +12,7 @@
 
 -  A device running Windows 11 24H2 and above / Windows 10 22H2
 
-### Method 1 - Download from Ruebenlabs (Recommended)
+### Method 1 - Download from rueben.xyz (Recommended)
 
 -   Go to https://rux.rueben.xyz
 -   Click the download button
