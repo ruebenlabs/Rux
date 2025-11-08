@@ -16,11 +16,13 @@
 
 -   Go to https://rux.rueben.xyz
 -   Click the download button
--   Run the downloaded installer file and go through with the install of RuxOS
+-   Run the downloaded installer file and go through the install of RuxOS
 
 ### Method 2 - Download from Github
 
--   Go to the latest release
+-   Go to the [latest release](https://github.com/ruebenlabs/Rux/releases/tag/v1.0-launch)
+-   Download RuxInstaller.exe
+-   Run the downloaded installer file and go through the install of RuxOS
 
 </br>
 
