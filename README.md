@@ -10,19 +10,21 @@
 
 ### Prerequisites
 
--  coming soon
+-  A device running Windows 11 24H2 and above / Windows 10 22H2
 
-### Method 1 - coming soon (Recommended)
+### Method 1 - Download from Ruebenlabs (Recommended)
 
--   coming soon
+-   Go to https://rux.rueben.xyz
+-   Click the download button
+-   Run the downloaded installer file and go through with the install of RuxOS
 
-### Method 2 - coming soon
+### Method 2 - Download from Github
 
--   coming soon
+-   Go to the latest release
 
 </br>
 
 ```
-Latest Version: dev
-Release date: tbd
+Latest Version: v1
+Release date: 8/11/25
 ```
