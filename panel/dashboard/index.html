@@ -80,7 +80,7 @@
         </div>
         
         <div id="main-grid-view">
-            <h2 class="text-2xl font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">System Configuration</h2>
+            <h2 class="text-2xl font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">System Configuration </h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -171,7 +171,10 @@
                 buttons: [
                     { label: 'Reset Panel (Re-apply all system settings)', link: 'https://rux.rueben.xyz/panel/dashboard', icon: 'undo-2' },
                     { label: 'Enable Branding (Rux default)', link: 'rux-enable-brand:', icon: 'layout-template' },
-                    { label: 'Disable Branding', link: 'rux-disable-brand:', icon: 'layout-template' }
+                    { label: 'Disable Branding', link: 'rux-disable-brand:', icon: 'layout-template' },
+                    // NEW BUTTONS ADDED BELOW
+                    { label: 'Enable Rux Panel shortcut in Windows Right-Click Context Menu (Rux default)', link: 'rux-enable-rcpanel:', icon: 'pointer' },
+                    { label: 'Disable Rux Panel shortcut in Windows Right-Click Context Menu', link: 'rux-disable-rcpanel:', icon: 'pointer-off' }
                 ]
             },
             'win11-optimizations': {
@@ -189,7 +192,6 @@
                     { label: 'Notification Preferences', link: '#notifications', icon: 'bell' }
                 ]
             },
-            // Software Update only contains Windows Update
             'updates': {
                 title: 'Software Update Management',
                 buttons: [
