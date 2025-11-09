@@ -20,7 +20,7 @@
 
 ### Method 2 - Download from Github
 
--   Go to the [latest release](https://github.com/ruebenlabs/Rux/releases/tag/v1.0-launch)
+-   Go to the [latest release](https://github.com/ruebenlabs/Rux/releases/tag/v1.2)
 -   Download RuxInstaller.exe
 -   Run the downloaded installer file and go through the install of RuxOS
 
