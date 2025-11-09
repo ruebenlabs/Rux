@@ -1,321 +1,228 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rux | Panel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Custom font import */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        :root {
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Custom glow effect on hover */
-        .setting-card {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 rgba(59, 130, 246, 0);
-        }
-        .setting-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2), 0 0 10px rgba(59, 130, 246, 0.4);
-            border-color: rgb(59 130 246 / 0.5); /* Blue 500 with opacity */
-        }
-        
-        /* Modal Backdrop Style */
-        .modal-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 50;
-        }
-
-        /* Modal Content Style */
-        .modal-content {
-            background-color: #1f2937; /* Gray 800 */
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            max-width: 90%;
-            width: 300px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-    </style>
-</head>
-<body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col items-center p-4 sm:p-8">
-
-    <header class="w-full max-w-5xl text-center mb-12">
-        <h1 class="text-5xl font-extrabold text-blue-400 tracking-wider mb-2">RUX Panel</h1>
-        <p class="text-lg text-gray-400 font-light">Customize RuxOS to your liking</p>
-        <hr class="mt-4 border-gray-800">
-    </header>
-
+<html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Rux | Panel</title>    <script src="https://cdn.tailwindcss.com"></script>    <script src="https://unpkg.com/lucide@latest"></script>    <style>        /* Custom font import */        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');        :root {            font-family: 'Inter', sans-serif;        }
+        /* Custom glow effect on hover */        .setting-card {            transition: all 0.3s ease;            box-shadow: 0 0 0 rgba(59, 130, 246, 0);        }        .setting-card:hover {            transform: translateY(-4px);            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2), 0 0 10px rgba(59, 130, 246, 0.4);            border-color: rgb(59 130 246 / 0.5); /* Blue 500 with opacity */        }                /* Modal Backdrop Style */        .modal-backdrop {            position: fixed;            top: 0;            left: 0;            width: 100%;            height: 100%;            background-color: rgba(0, 0, 0, 0.75);            display: flex;            justify-content: center;            align-items: center;            z-index: 50;        }
+        /* Modal Content Style */        .modal-content {            background-color: #1f2937; /* Gray 800 */            border-radius: 0.5rem;            padding: 1.5rem;            max-width: 90%;            width: 350px; /* Slightly wider for the warning */            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);            text-align: center;        }    </style></head><body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col items-center p-4 sm:p-8">
+    <header class="w-full max-w-5xl text-center mb-12">        <h1 class="text-5xl font-extrabold text-blue-400 tracking-wider mb-2">RUX Panel</h1>        <p class="text-lg text-gray-400 font-light">Customize RuxOS to your liking</p>        <hr class="mt-4 border-gray-800">    </header>
     <main class="w-full max-w-4xl">
-
-        <div class="bg-gray-900/70 border border-gray-700 p-6 rounded-xl mb-10">
-            <div class="flex items-center space-x-4 mb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap w-6 h-6 text-emerald-400"><path d="M10.42 2.87a2 2 0 0 0-2.02.13L4 7.5l-.5 4.5 4.5-4.5h4l1.5-1.5 4.5 4.5-4-3.5a2 2 0 0 0-1.84-.04L6 11.5v3.5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9.5l-4-3.5"></path><path d="M12 2v2"></path><path d="M2 11h2"></path><path d="M20 11h2"></path></svg>
-                <p class="text-lg font-semibold text-white">System Status</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-2 text-sm">
-                <div class="flex flex-col">
-                    <span class="text-gray-400 font-light">Status:</span>
-                    <span class="font-medium text-emerald-400">Connected with RuxKey</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-gray-400 font-light">Operating System:</span>
-                    <span class="font-medium text-white">RuxOS Installed</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-gray-400 font-light">Local IP:</span>
-                    <span class="font-medium text-white">192.168.1.42</span>
-                </div>
-            </div>
-        </div>
-        
-        <div id="main-grid-view">
-            <h2 class="text-2xl font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">System Configuration </h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <a href="javascript:void(0)" data-category="rux-options" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings-2" class="lucide lucide-settings-2 w-10 h-10 text-emerald-400 mb-3 group-hover:text-emerald-300"><path d="M20 7h-9"></path><path d="M14 17h-5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="6" cy="7" r="3"></circle><circle cx="11" cy="17" r="3"></circle></svg>
-                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Rux Options</h3>
-                    <p class="text-sm text-gray-400 mt-1">Configure advanced system tweaks and core Rux behaviors.</p>
-                </a>
-
-                <a href="javascript:void(0)" data-category="win11-optimizations" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wrench" class="lucide lucide-wrench w-10 h-10 text-yellow-400 mb-3 group-hover:text-yellow-300"><path d="M.47 13.91 10.9 3.48a2.53 2.53 0 0 1 3.55 0l2.12 2.12a2.53 2.53 0 0 1 0 3.55L7.54 19.53a2 2 0 0 1-.8 1.48L3.7 22.8a1 1 0 0 1-1.33-.28L.2 19.33a1 1 0 0 1-.16-1.57l.42-.44a1 1 0 0 0 .09-1.21L.47 13.91Zm19.06-2.58a1 1 0 0 1 1.41 0l2.12 2.12a1 1 0 0 1 0 1.41l-2.12 2.12a1 1 0 0 1-1.41 0l-2.12-2.12a1 1 0 0 1 0-1.41l2.12-2.12Z"></path></svg>
-                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Windows 11 Optimizations</h3>
-                    <p class="text-sm text-gray-400 mt-1">Optimizations for Windows 11 24H2 and above **ONLY**.</p>
-                </a>
-
-                <a href="javascript:void(0)" data-category="appearance" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="paint-roller" class="lucide lucide-paint-roller w-10 h-10 text-purple-400 mb-3 group-hover:text-purple-300"><rect width="16" height="6" x="2" y="2" rx="2"></rect><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect width="4" height="6" x="8" y="16" rx="1"></rect></svg>
-                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Display &amp; Theme</h3>
-                    <p class="text-sm text-gray-400 mt-1">Customize the user interface, font scaling, and color palettes.</p>
-                </a>
-
-                <a href="javascript:void(0)" data-category="updates" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" class="lucide lucide-refresh-cw w-10 h-10 text-blue-400 mb-3 group-hover:text-blue-300"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
-                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Software Update</h3>
-                    <p class="text-sm text-gray-400 mt-1">Check for new versions and manage automatic patch installation.</p>
-                </a>
-            </div>
-
-            <h2 class="text-2xl font-semibold text-gray-300 mt-10 mb-6 border-b border-gray-800 pb-2">Advanced Tools</h2>
-            
-            <div class="space-y-4">
-                <a href="#" class="advanced-tool-link flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="terminal" class="lucide lucide-terminal w-6 h-6 text-gray-500 group-hover:text-orange-400"><path d="M12 19h8"></path><path d="m4 17 6-6-6-6"></path></svg>
+        <div class="bg-gray-900/70 border border-gray-700 p-6 rounded-xl mb-10">            <div class="flex items-center space-x-4 mb-3">                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap w-6 h-6 text-emerald-400"><path d="M10.42 2.87a2 2 0 0 0-2.02.13L4 7.5l-.5 4.5 4.5-4.5h4l1.5-1.5 4.5 4.5-4-3.5a2 2 0 0 0-1.84-.04L6 11.5v3.5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9.5l-4-3.5"></path><path d="M12 2v2"></path><path d="M2 11h2"></path><path d="M20 11h2"></path></svg>                <p class="text-lg font-semibold text-white">System Status</p>            </div>            <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-2 text-sm">                <div class="flex flex-col">                    <span class="text-gray-400 font-light">Status:</span>                    <span class="font-medium text-emerald-400">Connected with RuxKey</span>                </div>                <div class="flex flex-col">                    <span class="text-gray-400 font-light">Operating System:</span>                    <span class="font-medium text-white">RuxOS Installed</span>                </div>                <div class="flex flex-col">                    <span class="text-gray-400 font-light">Local IP:</span>                    <span class="font-medium text-white">192.168.1.42</span>                </div>            </div>        </div>                <div id="main-grid-view">            <h2 class="text-2xl font-semibold text-gray-300 mb-6 border-b border-gray-800 pb-2">System Configuration </h2>                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="javascript:void(0)" data-category="rux-options" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings-2" class="lucide lucide-settings-2 w-10 h-10 text-emerald-400 mb-3 group-hover:text-emerald-300"><path d="M20 7h-9"></path><path d="M14 17h-5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="6" cy="7" r="3"></circle><circle cx="11" cy="17" r="3"></circle></svg>                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Rux Options</h3>                    <p class="text-sm text-gray-400 mt-1">Configure advanced system tweaks and core Rux behaviors.</p>                </a>
+                <a href="javascript:void(0)" data-category="win11-optimizations" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wrench" class="lucide lucide-wrench w-10 h-10 text-yellow-400 mb-3 group-hover:text-yellow-300"><path d="M.47 13.91 10.9 3.48a2.53 2.53 0 0 1 3.55 0l2.12 2.12a2.53 2.53 0 0 1 0 3.55L7.54 19.53a2 2 0 0 1-.8 1.48L3.7 22.8a1 1 0 0 1-1.33-.28L.2 19.33a1 1 0 0 1-.16-1.57l.42-.44a1 1 0 0 0 .09-1.21L.47 13.91Zm19.06-2.58a1 1 0 0 1 1.41 0l2.12 2.12a1 1 0 0 1 0 1.41l-2.12 2.12a1 1 0 0 1-1.41 0l-2.12-2.12a1 1 0 0 1 0-1.41l2.12-2.12Z"></path></svg>                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Windows 11 Optimizations</h3>                    <p class="text-sm text-gray-400 mt-1">Optimizations for Windows 11 24H2 and above **ONLY**.</p>                </a>
+                <a href="javascript:void(0)" data-category="appearance" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="paint-roller" class="lucide lucide-paint-roller w-10 h-10 text-purple-400 mb-3 group-hover:text-purple-300"><rect width="16" height="6" x="2" y="2" rx="2"></rect><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect width="4" height="6" x="8" y="16" rx="1"></rect></svg>                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Display &amp; Theme</h3>                    <p class="text-sm text-gray-400 mt-1">Customize the user interface, font scaling, and color palettes.</p>                </a>
+                <a href="javascript:void(0)" data-category="updates" class="setting-card block p-6 rounded-xl border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 group setting-link">                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" class="lucide lucide-refresh-cw w-10 h-10 text-blue-400 mb-3 group-hover:text-blue-300"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>                    <h3 class="text-xl font-bold text-white group-hover:text-blue-300">Software Update</h3>                    <p class="text-sm text-gray-400 mt-1">Check for new versions and manage automatic patch installation.</p>                </a>            </div>
+            <h2 class="text-2xl font-semibold text-gray-300 mt-10 mb-6 border-b border-gray-800 pb-2">Advanced Tools</h2>                        <div class="space-y-4">                <a href="#" class="advanced-tool-link flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="terminal" class="lucide lucide-terminal w-6 h-6 text-gray-500 group-hover:text-orange-400"><path d="M12 19h8"></path><path d="m4 17 6-6-6-6"></path></svg>                    <div class="flex-grow">                        <p class="font-medium text-white group-hover:text-orange-300">Console Access</p>                        <p class="text-xs text-gray-500">Direct command-line interface access (Administrator required).</p>                    </div>                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-5 h-5 text-gray-600 group-hover:text-orange-400 transition duration-150"><path d="m9 18 6-6-6-6"></path></svg>                </a>
+                <a href="#" class="advanced-tool-link flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="database" class="lucide lucide-database w-6 h-6 text-gray-500 group-hover:text-lime-400"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 9 0 0 0 21 12"></path></svg>                    <div class="flex-grow">                        <p class="font-medium text-white group-hover:text-lime-300">Data Backup &amp; Restore</p>                        <p class="text-xs text-gray-500">Configure automated backups and manage restoration points.</p>                    </div>                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-5 h-5 text-gray-600 group-hover:text-lime-400 transition duration-150"><path d="m9 18 6-6-6-6"></path></svg>                </a>
+                
+                <a href="#" id="uninstall-tool-link" class="advanced-tool-link flex items-center space-x-4 p-4 rounded-lg border border-red-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="package-minus" class="lucide lucide-package-minus w-6 h-6 text-red-500 group-hover:text-red-400"><path d="M16 20V4"></path><path d="M10 20V4"></path><path d="M3 7l2 15h14l2-15"></path><path d="M8 2h8"></path><line x1="12" x2="12" y1="11" y2="17"></line><line x1="9" x2="15" y1="14" y2="14"></line></svg>
                     <div class="flex-grow">
-                        <p class="font-medium text-white group-hover:text-orange-300">Console Access</p>
-                        <p class="text-xs text-gray-500">Direct command-line interface access (Administrator required).</p>
+                        <p class="font-medium text-red-400 group-hover:text-red-300">Uninstall RuxOS</p>
+                        <p class="text-xs text-gray-500">Completely remove RuxOS and revert all changes.</p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-5 h-5 text-gray-600 group-hover:text-orange-400 transition duration-150"><path d="m9 18 6-6-6-6"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-5 h-5 text-gray-600 group-hover:text-red-400 transition duration-150"><path d="m9 18 6-6-6-6"></path></svg>
                 </a>
-
-                <a href="#" class="advanced-tool-link flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="database" class="lucide lucide-database w-6 h-6 text-gray-500 group-hover:text-lime-400"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>
-                    <div class="flex-grow">
-                        <p class="font-medium text-white group-hover:text-lime-300">Data Backup &amp; Restore</p>
-                        <p class="text-xs text-gray-500">Configure automated backups and manage restoration points.</p>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-5 h-5 text-gray-600 group-hover:text-lime-400 transition duration-150"><path d="m9 18 6-6-6-6"></path></svg>
-                </a>
-            </div>
-        </div>
-        
-        <div id="detail-view" class="hidden">
-            <button id="back-button" class="flex items-center space-x-2 text-blue-400 hover:text-blue-300 mb-6 transition duration-150">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-left" class="lucide lucide-chevron-left w-5 h-5"><path d="m15 18-6-6 6-6"></path></svg>
-                <span>Back to Main Panel</span>
-            </button>
-
-            <h2 id="detail-title" class="text-3xl font-bold text-white mb-6 border-b border-gray-800 pb-3"></h2>
-            
-            <div id="detail-buttons-container" class="space-y-4">
-                </div>
-        </div>
-
+                </div>        </div>                <div id="detail-view" class="hidden">            <button id="back-button" class="flex items-center space-x-2 text-blue-400 hover:text-blue-300 mb-6 transition duration-150">                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-left" class="lucide lucide-chevron-left w-5 h-5"><path d="m15 18-6-6 6-6"></path></svg>                <span>Back to Main Panel</span>            </button>
+            <h2 id="detail-title" class="text-3xl font-bold text-white mb-6 border-b border-gray-800 pb-3"></h2>                        <div id="detail-buttons-container" class="space-y-4">                </div>        </div>
     </main>
+    <footer class="mt-20 w-full max-w-4xl text-center text-xs text-gray-600 border-t border-gray-800 pt-6">        Rux Configuration Interface | Version 4.1.2 | <a href="#" class="text-blue-500 hover:underline">Help</a>    </footer>
+    
+    <div id="rux-dev-key-modal" class="modal-backdrop hidden">        <div class="modal-content">            <p class="text-lg font-semibold text-white mb-4">Access Restricted</p>            <p class="text-gray-300 mb-6">This action requires a <span class="text-blue-400 font-bold">RuxKey Dev Channel</span>.</p>            <button id="modal-ok-button" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition duration-150">                OK            </button>        </div>    </div>
 
-    <footer class="mt-20 w-full max-w-4xl text-center text-xs text-gray-600 border-t border-gray-800 pt-6">
-        Rux Configuration Interface | Version 4.1.2 | <a href="#" class="text-blue-500 hover:underline">Help</a>
-    </footer>
-
-    <div id="rux-dev-key-modal" class="modal-backdrop hidden">
+    <div id="uninstall-warning-modal" class="modal-backdrop hidden">
         <div class="modal-content">
-            <p class="text-lg font-semibold text-white mb-4">Access Restricted</p>
-            <p class="text-gray-300 mb-6">This action requires a <span class="text-blue-400 font-bold">RuxKey Dev Channel</span>.</p>
-            <button id="modal-ok-button" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition duration-150">
-                OK
-            </button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-triangle" class="lucide lucide-alert-triangle text-red-500 mx-auto mb-4"><path d="m21.73 18-8-14c-.95-1.66-3.08-1.66-4.03 0l-8 14c-.95 1.66.21 3.66 2.02 3.66h16c1.81 0 2.97-2 2.02-3.66z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+            <p class="text-xl font-bold text-white mb-3">WARNING: Uninstall RuxOS</p>
+            <p class="text-gray-400 mb-6 text-sm">This action will attempt to completely remove RuxOS. Your system may revert to default Windows settings and require a restart.</p>
+            <div class="flex justify-center space-x-4">
+                <button id="uninstall-cancel-button" class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded transition duration-150">
+                    Cancel
+                </button>
+                <a href="rux-uninstall:" id="uninstall-confirm-button" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded transition duration-150">
+                    Uninstall
+                </a>
+            </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        // Initialize Lucide Icons
+    <script type="text/javascript">        
+        // Initialize Lucide Icons        
         lucide.createIcons();
-
-        // Helper function to create a button HTML string
-        function createButtonHtml(item) {
-            return `
-                <a href="${item.link}" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">
-                    <i data-lucide="${item.icon}" class="w-6 h-6 text-blue-400 group-hover:text-blue-300"></i>
-                    <div class="flex-grow">
-                        <p class="font-medium text-white group-hover:text-blue-300">${item.label}</p>
-                    </div>
-                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 group-hover:text-blue-400 transition duration-150"></i>
-                </a>
-            `;
-        }
-
-        // --- Configuration Data for Sub-Settings ---
-        const settingsData = {
-            'rux-options': {
-                title: 'Rux Options',
-                buttons: [
-                    { label: 'Reset Panel (Re-apply all system settings)', link: 'https://rux.rueben.xyz/panel/dashboard', icon: 'undo-2' },
-                    { label: 'Enable Branding (Rux default)', link: 'rux-enable-brand:', icon: 'layout-template' },
-                    { label: 'Disable Branding', link: 'rux-disable-brand:', icon: 'layout-template' },
-                    { label: 'Enable Rux Panel shortcut in Windows Right-Click Context Menu (Rux default)', link: 'rux-enable-rcpanel:', icon: 'pointer' },
-                    { label: 'Disable Rux Panel shortcut in Windows Right-Click Context Menu', link: 'rux-disable-rcpanel:', icon: 'pointer-off' }
-                ]
-            },
-            'win11-optimizations': {
-                title: 'Windows 11 Optimizations',
-                buttons: [
-                    { label: 'Disable Right-Click Context Menu (Rux default)', link: 'rux-disable-win11:', icon: 'lock' },
-                    { label: 'Enable Right-Click Context Menu', link: 'rux-enable-win11:', icon: 'unlock' }
-                ]
-            },
-            'appearance': {
-                title: 'Display & Theme Customization',
-                // CUSTOM STRUCTURE for Appearance
-                groups: [
-                    {
-                        title: 'Wallpapers',
-                        buttons: [
-                            { label: 'Rux: Cosmic Flux (default)', link: 'rux-cf:', icon: 'sparkles' },
-                            { label: 'Rux: Cosmic Flux (no title)', link: 'rux-cfx:', icon: 'sparkles' }
-                        ]
-                    },
-                    {
-                        title: 'Extra',
-                        buttons: [
-                            { label: 'Revert Wallpaper to before Rux Install (experimental)', link: 'rux-returnwall:', icon: 'undo' }
-                        ]
-                    }
-                ]
-            },
-            'updates': {
-                title: 'Software Update Management',
-                buttons: [
-                    { label: 'Windows Update', link: 'ms-settings:windowsupdate', icon: 'monitor-check' }
-                ]
-            }
-        };
-
-        // --- DOM Elements ---
-        const mainView = document.getElementById('main-grid-view');
-        const detailView = document.getElementById('detail-view');
-        const backButton = document.getElementById('back-button');
-        const detailTitle = document.getElementById('detail-title');
-        const detailButtonsContainer = document.getElementById('detail-buttons-container');
-        const settingLinks = document.querySelectorAll('.setting-link');
         
-        // Modal elements
-        const advancedToolLinks = document.querySelectorAll('.advanced-tool-link');
-        const modal = document.getElementById('rux-dev-key-modal');
+        // Helper function to create a button HTML string        
+        function createButtonHtml(item) {            
+            return `                
+                <a href="${item.link}" class="flex items-center space-x-4 p-4 rounded-lg border border-gray-700 bg-gray-900/70 hover:bg-gray-800/80 transition duration-200 group">                    
+                    <i data-lucide="${item.icon}" class="w-6 h-6 text-blue-400 group-hover:text-blue-300"></i>                    
+                    <div class="flex-grow">                        
+                        <p class="font-medium text-white group-hover:text-blue-300">${item.label}</p>                    
+                    </div>                    
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-600 group-hover:text-blue-400 transition duration-150"></i>                
+                </a>            
+            `;        
+        }
+        
+        // --- Configuration Data for Sub-Settings ---        
+        const settingsData = {            
+            'rux-options': {                
+                title: 'Rux Options',                
+                buttons: [                    
+                    { label: 'Reset Panel (Re-apply all system settings)', link: 'https://rux.rueben.xyz/panel/dashboard', icon: 'undo-2' },                    
+                    { label: 'Enable Branding (Rux default)', link: 'rux-enable-brand:', icon: 'layout-template' },                    
+                    { label: 'Disable Branding', link: 'rux-disable-brand:', icon: 'layout-template' },                    
+                    { label: 'Enable Rux Panel shortcut in Windows Right-Click Context Menu (Rux default)', link: 'rux-enable-rcpanel:', icon: 'pointer' },                    
+                    { label: 'Disable Rux Panel shortcut in Windows Right-Click Context Menu', link: 'rux-disable-rcpanel:', icon: 'pointer-off' }                
+                ]            
+            },            
+            'win11-optimizations': {                
+                title: 'Windows 11 Optimizations',                
+                buttons: [                    
+                    { label: 'Disable Right-Click Context Menu (Rux default)', link: 'rux-disable-win11:', icon: 'lock' },                    
+                    { label: 'Enable Right-Click Context Menu', link: 'rux-enable-win11:', icon: 'unlock' }                
+                ]            
+            },            
+            'appearance': {                
+                title: 'Display & Theme Customization',                
+                // CUSTOM STRUCTURE for Appearance                
+                groups: [                    
+                    {                        
+                        title: 'Wallpapers',                        
+                        buttons: [                            
+                            { label: 'Rux: Cosmic Flux (default)', link: 'rux-cf:', icon: 'sparkles' },                            
+                            { label: 'Rux: Cosmic Flux (no title)', link: 'rux-cfx:', icon: 'sparkles' }                        
+                        ]                    
+                    },                    
+                    {                        
+                        title: 'Extra',                        
+                        buttons: [                            
+                            { label: 'Revert Wallpaper to before Rux Install (experimental)', link: 'rux-returnwall:', icon: 'undo' }                        
+                        ]                    
+                    }                
+                ]            
+            },            
+            'updates': {                
+                title: 'Software Update Management',                
+                buttons: [                    
+                    { label: 'Windows Update', link: 'ms-settings:windowsupdate', icon: 'monitor-check' }                
+                ]            
+            }        
+        };
+        
+        // --- DOM Elements ---        
+        const mainView = document.getElementById('main-grid-view');        
+        const detailView = document.getElementById('detail-view');
+        const backButton = document.getElementById('back-button');        
+        const detailTitle = document.getElementById('detail-title');        
+        const detailButtonsContainer = document.getElementById('detail-buttons-container');        
+        const settingLinks = document.querySelectorAll('.setting-link');                
+        
+        // Advanced Tool Elements
+        const advancedToolLinks = document.querySelectorAll('.advanced-tool-link'); 
+        const ruxDevKeyModal = document.getElementById('rux-dev-key-modal');
         const modalOkButton = document.getElementById('modal-ok-button');
+        
+        // Uninstall Elements
+        const uninstallToolLink = document.getElementById('uninstall-tool-link');
+        const uninstallWarningModal = document.getElementById('uninstall-warning-modal');
+        const uninstallCancelButton = document.getElementById('uninstall-cancel-button');
+        const uninstallConfirmButton = document.getElementById('uninstall-confirm-button');
 
 
-        /**
-         * Switches the view to the main settings grid.
-         */
-        function showMainView() {
-            detailView.classList.add('hidden');
-            mainView.classList.remove('hidden');
+        /** * Switches the view to the main settings grid.         
+         */        
+        function showMainView() {            
+            detailView.classList.add('hidden');            
+            mainView.classList.remove('hidden');            
             detailButtonsContainer.innerHTML = ''; // Clear previous buttons
         }
-
-        /**
-         * Switches the view to the detail panel and populates it with sub-buttons.
-         * @param {string} categoryKey - The key corresponding to the settingsData.
-         */
-        function showDetailView(categoryKey) {
-            const data = settingsData[categoryKey];
+        
+        /** * Switches the view to the detail panel and populates it with sub-buttons.         
+         * @param {string} categoryKey - The key corresponding to the settingsData.         
+         */        
+        function showDetailView(categoryKey) {            
+            const data = settingsData[categoryKey];            
             if (!data) return;
-
-            // Update header
-            detailTitle.textContent = data.title;
             
+            // Update header            
+            detailTitle.textContent = data.title;                        
             let contentHtml = '';
-
-            if (data.groups) {
-                // Handle custom grouped buttons (e.g., 'appearance')
-                contentHtml = data.groups.map(group => {
-                    const groupTitleHtml = `<h3 class="text-lg font-semibold text-gray-400 mt-4 mb-3 border-b border-gray-700/50 pb-1">${group.title}</h3>`;
-                    const groupButtonsHtml = group.buttons.map(createButtonHtml).join('');
-                    return groupTitleHtml + `<div class="space-y-4">${groupButtonsHtml}</div>`;
-                }).join('');
-                
-            } else if (data.buttons) {
-                // Handle standard flat buttons
-                const buttonsHtml = data.buttons.map(createButtonHtml).join('');
-                contentHtml = `<div class="space-y-4">${buttonsHtml}</div>`;
+            
+            if (data.groups) {                
+                // Handle custom grouped buttons (e.g., 'appearance')                
+                contentHtml = data.groups.map(group => {                    
+                    const groupTitleHtml = `<h3 class="text-lg font-semibold text-gray-400 mt-4 mb-3 border-b border-gray-700/50 pb-1">${group.title}</h3>`;                    
+                    const groupButtonsHtml = group.buttons.map(createButtonHtml).join('');                    
+                    return groupTitleHtml + `<div class="space-y-4">${groupButtonsHtml}</div>`;                
+                }).join('');                            
+            } else if (data.buttons) {                
+                // Handle standard flat buttons                
+                const buttonsHtml = data.buttons.map(createButtonHtml).join('');                
+                contentHtml = `<div class="space-y-4">${buttonsHtml}</div>`;            
             }
-
-            detailButtonsContainer.innerHTML = contentHtml;
+            
+            detailButtonsContainer.innerHTML = contentHtml;            
             lucide.createIcons(); // Re-initialize icons for new elements
-
-            // Switch views
-            mainView.classList.add('hidden');
-            detailView.classList.remove('hidden');
+            
+            // Switch views            
+            mainView.classList.add('hidden');            
+            detailView.classList.remove('hidden');        
         }
-
-        // --- Event Listeners ---
         
-        // 1. Attach listener to all main setting cards (for detail view)
-        settingLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                const category = link.dataset.category;
-                showDetailView(category);
-                event.preventDefault(); // Stop hash navigation
-            });
-        });
-
-        // 2. Attach listener to the Back button
-        backButton.addEventListener('click', showMainView);
+        // --- Event Listeners ---                
         
-        // 3. Attach listener to Advanced Tools links to show modal
-        advancedToolLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault(); // Stop default navigation
-                modal.classList.remove('hidden');
+        // 1. Attach listener to all main setting cards (for detail view)        
+        settingLinks.forEach(link => {            
+            link.addEventListener('click', (event) => {                
+                const category = link.dataset.category;                
+                showDetailView(category);                
+                event.preventDefault(); // Stop hash navigation            
             });
         });
         
-        // 4. Attach listener to modal OK button to close modal
-        modalOkButton.addEventListener('click', () => {
-            modal.classList.add('hidden');
+        // 2. Attach listener to the Back button        
+        backButton.addEventListener('click', showMainView);                
+        
+        // 3. Attach listener to ALL Advanced Tools links 
+        // Logic inside the listener determines which modal to show
+        advancedToolLinks.forEach(link => {            
+            link.addEventListener('click', (event) => {                
+                event.preventDefault(); // Stop default navigation                
+                
+                if (link.id === 'uninstall-tool-link') {
+                    // Show Uninstall Warning Modal
+                    uninstallWarningModal.classList.remove('hidden');
+                } else {
+                    // Show Rux Dev Key Modal for all others
+                    ruxDevKeyModal.classList.remove('hidden');
+                }
+            });
         });
         
-        // 5. Allow closing modal by clicking the backdrop
-        modal.addEventListener('click', (event) => {
-            // Check if the click occurred directly on the backdrop (not on the content)
-            if (event.target === modal) {
-                modal.classList.add('hidden');
+        // 4. Attach listener to modal OK button to close Dev Key modal        
+        modalOkButton.addEventListener('click', () => {            
+            ruxDevKeyModal.classList.add('hidden');
+        });
+        
+        // 5. Allow closing Dev Key modal by clicking the backdrop        
+        ruxDevKeyModal.addEventListener('click', (event) => {            
+            // Check if the click occurred directly on the backdrop (not on the content)            
+            if (event.target === ruxDevKeyModal) {                
+                ruxDevKeyModal.classList.add('hidden');
             }
         });
+        
+        // 6. Attach listener to 'Cancel' button in warning modal
+        uninstallCancelButton.addEventListener('click', () => {
+            uninstallWarningModal.classList.add('hidden');
+        });
 
+        // 7. Attach listener to 'Uninstall' button in warning modal 
+        // The link's default behavior handles navigation to 'rux-uninstall:'
+        uninstallConfirmButton.addEventListener('click', () => {
+             uninstallWarningModal.classList.add('hidden');
+        });
+
+        // 8. Allow closing Uninstall modal by clicking the backdrop
+        uninstallWarningModal.addEventListener('click', (event) => {
+            if (event.target === uninstallWarningModal) {
+                uninstallWarningModal.classList.add('hidden');
+            }
+        });
     </script>
-
 </body></html>
